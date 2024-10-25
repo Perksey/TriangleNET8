@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFrameworks>net8.0;net8.0-android</TargetFrameworks>
+        <TargetFrameworks Condition="!$([MSBuild]::IsOsPlatform('Linux'))">net8.0-ios;$(TargetFrameworks)</TargetFrameworks>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>preview</LangVersion>
+        <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)' == '' And '$(TargetFramework)' == 'net8.0'">$(NETCoreSdkRuntimeIdentifier)</RuntimeIdentifiers>
+        <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)' == '' And '$(TargetFramework)' == 'net8.0-android'">android-arm64;android-x86;android-arm;android-x64</RuntimeIdentifiers>
+        <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)' == '' And '$(TargetFramework)' == 'net8.0-ios'">iossimulator-arm64;iossimulator-x64;ios-arm64</RuntimeIdentifiers>
+        <TrimMode>full</TrimMode>
+        <UseMaui>true</UseMaui>
+        <RestoreAdditionalProjectSources>$(RestoreAdditionalProjectSources);https://dotnet.github.io/Silk.NET/nuget/experimental/index.json</RestoreAdditionalProjectSources>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <CodesignKey>iPhone Developer</CodesignKey>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <CodesignKey>iPhone Developer</CodesignKey>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="*.vert" />
+        <EmbeddedResource Include="*.frag" />
+        <PackageReference Include="Silk.NET.Input" Version="2.21.0-pr2211.4850" />
+        <PackageReference Include="Silk.NET.Windowing" Version="2.21.0-pr2211.4850" />
+        <PackageReference Include="Silk.NET.OpenGL" Version="2.21.0-pr2211.4850" />
+        <PackageReference Include="Silk.NET.SDL" Version="2.21.0-pr2211.4850" />
+        <PackageReference Include="Ultz.Native.SDL" Version="2.30.1.1" />
+    </ItemGroup>
+    
+    <!-- Android -->
+    <ItemGroup Condition="'$(TargetFramework)' != 'net8.0-android'">
+        <Compile Remove="\MainActivity.cs" />
+    </ItemGroup>
+</Project>
