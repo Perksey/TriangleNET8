@@ -11,7 +11,7 @@
         <RuntimeIdentifiers Condition="'$(RuntimeIdentifiers)' == '' And '$(TargetFramework)' == 'net8.0-ios'">iossimulator-arm64;iossimulator-x64;ios-arm64</RuntimeIdentifiers>
         <TrimMode>full</TrimMode>
         <UseMaui>true</UseMaui>
-        <RestoreAdditionalProjectSources>$(RestoreAdditionalProjectSources);https://dotnet.github.io/Silk.NET/nuget/experimental/index.json</RestoreAdditionalProjectSources>
+        <RestoreAdditionalProjectSources>$(RestoreAdditionalProjectSources);/Users/dylan/Documents/Silk.NET/build/output_packages;https://dotnet.github.io/Silk.NET/nuget/experimental/index.json</RestoreAdditionalProjectSources>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -25,11 +25,11 @@
     <ItemGroup>
         <EmbeddedResource Include="*.vert" />
         <EmbeddedResource Include="*.frag" />
-        <PackageReference Include="Silk.NET.Input" Version="2.21.0-pr2211.4850" />
-        <PackageReference Include="Silk.NET.Windowing" Version="2.21.0-pr2211.4850" />
-        <PackageReference Include="Silk.NET.OpenGL" Version="2.21.0-pr2211.4850" />
-        <PackageReference Include="Silk.NET.SDL" Version="2.21.0-pr2211.4850" />
-        <PackageReference Include="Ultz.Native.SDL" Version="2.30.1.1" />
+        <PackageReference Include="Silk.NET.Input" Version="2.22.0-pr2184.5032" />
+        <PackageReference Include="Silk.NET.Windowing" Version="2.22.0-pr2184.5032" />
+        <PackageReference Include="Silk.NET.OpenGL" Version="2.22.0-pr2184.5032" />
+        <PackageReference Include="Silk.NET.SDL" Version="2.22.0-pr2184.5032" />
+        <PackageReference Include="Ultz.Native.SDL" Version="2.30.8" />
     </ItemGroup>
     
     <!-- Android -->

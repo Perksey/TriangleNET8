@@ -3,12 +3,12 @@ using Android.App;
 using Android.Content.PM;
 using Silk.NET.Windowing;
 using Silk.NET.Windowing.Sdl.Android;
+using Silk.NET.Input.Sdl;
 using Triangle;
 
 namespace TriangleDroid
 {
-    [Activity
-    (
+    [Activity(
         Label = "@string/app_name",
         MainLauncher = true,
         ConfigurationChanges = ConfigChangesFlags,
@@ -19,8 +19,13 @@ namespace TriangleDroid
     {
         protected override void OnRun()
         {
-            Program.API = new GraphicsAPI
-                (ContextAPI.OpenGLES, ContextProfile.Compatability, ContextFlags.Default, new APIVersion(3, 0));
+            SdlInput.Use();
+            Program.API = new GraphicsAPI(
+                ContextAPI.OpenGLES,
+                ContextProfile.Compatability,
+                ContextFlags.Default,
+                new APIVersion(3, 0)
+            );
             Program.Run();
         }
     }
